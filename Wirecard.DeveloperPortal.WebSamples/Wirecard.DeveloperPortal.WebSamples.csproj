@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -193,6 +194,12 @@
     <Content Include="Views\Home\CCProxySale3D.cshtml" />
     <Content Include="Views\Home\TransactionQueryByOrderId.cshtml" />
     <Content Include="Views\Home\TransactionQueryByMPAY.cshtml" />
+    <Content Include="Views\Home\MarketPlaceWDTicketMpSale3dSecWithUrl.cshtml" />
+    <Content Include="Views\Home\ChangePriceBySubScriber.cshtml" />
+    <Content Include="Views\Home\TokenizeCCURL.cshtml" />
+    <Content Include="Views\Home\CardTokenizeSuccess.cshtml" />
+    <Content Include="Views\Home\CardTokenizeFail.cshtml" />
+    <Content Include="Views\Home\TokenizeCC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wirecard.DeveloperPortal.Core\Wirecard.DeveloperPortal.Core.csproj">
@@ -214,7 +221,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7597</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -17,6 +17,6 @@ namespace Wirecard.DeveloperPortal.Core.Entity
         [XmlElement("ValidityPeriod")]
         public int ValidityPeriod { get; set; }
         [XmlElement("CCTokenId")]
-        public Guid CCTokenId { get; set; }
+        public string CCTokenId { get; set; }
     }
 }

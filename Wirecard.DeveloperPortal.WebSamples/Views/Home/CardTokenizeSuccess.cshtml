@@ -1,0 +1,54 @@
+﻿@model Wirecard.DeveloperPortal.Core.Response.CCTokenizeResponse
+@{
+    ViewBag.Title = "Başarılı Kart Saklama İşlemi";
+}
+
+
+
+
+    <div class="col-md-6">
+        <fieldset>
+            <!-- Form Name -->
+            
+            <div class="col-md-12">
+                <label class="col-md-4 control-label" for="">  StatusCode</label>
+                <div class="col-md-4">
+                    @Model.StatusCode
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-4 control-label" for=""> Result Code: </label>
+                <div class="col-md-4">
+                    @Model.ResultCode
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-4 control-label" for="">  Result Message: </label>
+                <div class="col-md-4">
+                    @Model.ResultMessage
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-4 control-label" for=""> TokenId: </label>
+                <div class="col-md-4">
+                    @Model.TokenId
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-4 control-label" for=""> MaskedCCNo: </label>
+                <div class="col-md-4">
+                    @Model.MaskedCCNo
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-4 control-label" for=""> CustomerId: </label>
+                <div class="col-md-4">
+                    @Model.CustomerId
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+
+
+

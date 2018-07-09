@@ -237,6 +237,34 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             var response = _subscriberManagementService.DeactivateSubscriber(token, guid);
             return View(response);
         }
+
+        public ActionResult ChangePriceBySubScriber()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangePriceBySubScriber(string subscriberId, string price)
+        {
+            var validFrom = DateTime.Now.AddDays(10).ToString("yyyyMMdd");
+            var request = new ChangePriceBySubscriberRequest();
+            request.ServiceType = "SubscriberManagementService";
+            request.OperationType = "ChangePriceBySubscriber";
+            request.SubscriberId = subscriberId;
+            request.ValidFrom = validFrom;
+            request.Price = price;
+            request.Description = "Ödeme Güncelleme";
+
+            #region Token
+            request.Token = new Token();
+            request.Token.UserCode = settings.UserCode;
+            request.Token.Pin = settings.Pin;
+            #endregion
+            var response = ChangePriceBySubscriberRequest.Execute(request, settings);
+            ServicesXmlResponse responseMessage = new ServicesXmlResponse();
+            responseMessage.XmlResponse = response;
+            return View(responseMessage);
+
+        }
         public ActionResult SendInformationSmsService()
         {
             return View();
@@ -321,7 +349,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.CardTokenization.RequestType = 0;
             request.CardTokenization.CustomerId = Guid.NewGuid().ToString();
             request.CardTokenization.ValidityPeriod = 0;
-            request.CardTokenization.CCTokenId = Guid.NewGuid();
+            request.CardTokenization.CCTokenId = string.Empty;
 
             #endregion
             var response = CCProxySale3DRequest.Execute(request, settings);
@@ -373,9 +401,9 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
 
             request.CardTokenization = new CardTokenization();
             request.CardTokenization.RequestType = 0;
-            request.CardTokenization.CustomerId = Guid.NewGuid().ToString();
+            request.CardTokenization.CustomerId =string.Empty;
             request.CardTokenization.ValidityPeriod = 0;
-            request.CardTokenization.CCTokenId = Guid.NewGuid();
+            request.CardTokenization.CCTokenId =string.Empty;
 
             #endregion
             var response = CCProxySaleRequest.Execute(request, settings);
@@ -488,7 +516,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
         /// <param name="identityNumber"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult MarketPlaceAddSubPartner(SubPartnerTypeEnum subPartnerType,string name, string mobilePhoneNumber, string identityNumber)
+        public ActionResult MarketPlaceAddSubPartner(SubPartnerTypeEnum subPartnerType,string name, string mobilePhoneNumber, string identityNumber,string email)
         {
             MarketPlaceAddOrUpdateRequest request = new MarketPlaceAddOrUpdateRequest();
             request.ServiceType = "CCMarketPlace";
@@ -496,6 +524,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.UniqueId = Guid.NewGuid().ToString().Replace("-","");
             request.SubPartnerType=subPartnerType;
             request.Name = name;
+            request.BranchName = name;
 
             #region Token Bilgileri
             request.Token = new Token();
@@ -511,6 +540,8 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.ContactInfo.Address = "Gayrettepe Mh. Yıldız Posta Cd. D Plaza No:52 K:6 34349 Beşiktaş / İstanbul";
             request.ContactInfo.MobilePhone = mobilePhoneNumber;
             request.ContactInfo.BusinessPhone = "2121111111";
+            request.ContactInfo.Email = email;
+            request.ContactInfo.InvoiceEmail = email;
             #endregion
             #region FinancialInfo Bilgileri
             request.FinancialInfo = new FinancialInfo();
@@ -519,7 +550,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.FinancialInfo.TaxNumber = "11111111111";
             request.FinancialInfo.BankName = "0012";
             request.FinancialInfo.IBAN = "TR330006100519786457841326";
-            request.FinancialInfo.AccountName = "Ahmet Yılmaz";
+
 
             #endregion
             var response = MarketPlaceAddOrUpdateRequest.Execute(request, settings);
@@ -545,7 +576,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
         /// <param name="subPartnerId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult MarketPlaceUpdateSubPartner(SubPartnerTypeEnum subPartnerType, string name, string mobilePhoneNumber, string identityNumber,int subPartnerId)
+        public ActionResult MarketPlaceUpdateSubPartner(SubPartnerTypeEnum subPartnerType, string name, string mobilePhoneNumber, string identityNumber,int subPartnerId,string email)
         {
             MarketPlaceAddOrUpdateRequest request = new MarketPlaceAddOrUpdateRequest();
             request.ServiceType = "CCMarketPlace";
@@ -553,6 +584,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.UniqueId = Guid.NewGuid().ToString();
             request.SubPartnerType = subPartnerType;
             request.Name = name;
+            request.BranchName = name;
             request.SubPartnerId = subPartnerId;
             #region Token Bilgileri
             request.Token = new Token();
@@ -568,6 +600,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.ContactInfo.Address = "Gayrettepe Mh. Yıldız Posta Cd. D Plaza No:52 K:6 34349 Beşiktaş / İstanbul";
             request.ContactInfo.MobilePhone = mobilePhoneNumber;
             request.ContactInfo.BusinessPhone = "2121111111";
+            request.ContactInfo.Email = email;
             #endregion
             #region FinancialInfo Bilgileri
             request.FinancialInfo = new FinancialInfo();
@@ -576,7 +609,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.FinancialInfo.TaxNumber = "11111111111";
             request.FinancialInfo.BankName = "0012";
             request.FinancialInfo.IBAN = "TR330006100519786457841326";
-            request.FinancialInfo.AccountName = "Ahmet Yılmaz";
+          
 
             #endregion
             var response = MarketPlaceAddOrUpdateRequest.Execute(request, settings);
@@ -647,8 +680,8 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.ExtraParam = "";
             request.PaymentContent = "BLGSYR01";
             request.SubPartnerId = subPartnerId;
-            request.ErrorURL = "http://localhost:7597/Home/MarketPlaceError";
-            request.SuccessURL = "http://localhost:7597/Home/MarketPlaceSuccess";
+            request.ErrorURL = "http://localhost:7597/Home/Fail";
+            request.SuccessURL = "http://localhost:7597/Home/Success";
 
             #region Token
             request.Token = new Token();
@@ -674,7 +707,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.CardTokenization.RequestType = 0;
             request.CardTokenization.CustomerId = Guid.NewGuid().ToString();
             request.CardTokenization.ValidityPeriod = 0;
-            request.CardTokenization.CCTokenId = Guid.NewGuid();
+            request.CardTokenization.CCTokenId = string.Empty;
 
             #endregion
 
@@ -743,7 +776,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.CardTokenization.RequestType = 0;
             request.CardTokenization.CustomerId = Guid.NewGuid().ToString();
             request.CardTokenization.ValidityPeriod = 0;
-            request.CardTokenization.CCTokenId = Guid.NewGuid();
+            request.CardTokenization.CCTokenId = String.Empty;
 
             #endregion
 
@@ -752,6 +785,47 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             responseMessage.XmlResponse = response;
             return View(responseMessage);
         }
+
+
+
+        public ActionResult MarketPlaceWDTicketMpSale3dSecWithUrl()
+        {
+            return View();
+            
+        }
+        [HttpPost]
+        public ActionResult MarketPlaceWDTicketMpSale3dSecWithUrl(int subPartnerId)
+        {
+
+            MarketPlaceMPSale3DSECRequest request= new MarketPlaceMPSale3DSECRequest();
+            request.ServiceType = "WDTicket";
+            request.OperationType = "MPSale3DSECWithUrl";
+            request.Price = 1; //0,01 TL
+            request.MPAY = "01";
+            request.Description = "Bilgisayar";
+            request.CommissionRate = 1; //komisyon oranı 1. 100 ile çarpılıp gönderiliyor
+            request.ExtraParam = "";
+            request.PaymentContent = "BLGSYR01";
+            request.SubPartnerId = subPartnerId;
+            request.ErrorURL = "http://localhost:7597/Home/Fail";
+            request.SuccessURL = "http://localhost:7597/Home/Success";
+
+
+            #region Token
+            request.Token = new Token();
+            request.Token.UserCode = settings.UserCode;
+            request.Token.Pin = settings.Pin;
+            #endregion
+            var response = MarketPlaceMPSale3DSECRequest.Execute(request, settings);
+            ServicesXmlResponse responseMessage = new ServicesXmlResponse();
+            responseMessage.XmlResponse = response;
+            return View(responseMessage);
+
+            
+        }
+
+       
+
 
         public ActionResult MarketPlaceReleasePayment()
         {
@@ -825,7 +899,98 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             return View(response);
         }
 
+        public ActionResult TokenizeCCURL()
+        {
 
+            return View();
+        }
+
+      
+
+
+        [HttpPost]
+        public ActionResult TokenizeCCURL(string customerId)
+        {
+            var request = new TokenizeCCURLRequest();
+
+            request.ServiceType = "WDTicket";
+            request.OperationType = "TokenizeCCURL";
+            request.SuccessURL = "http://localhost:7597/Home/CardTokenizeSuccess";
+            request.ErrorURL = "http://localhost:7597/Home/CardTokenizeFail";
+            request.CustomerId = customerId;
+            request.IPAddress = "";
+            request.ValidityPeriod = "20";
+
+            #region Token
+            request.Token = new Token();
+            request.Token.UserCode = settings.UserCode;
+            request.Token.Pin = settings.Pin;
+            #endregion
+
+            var response = TokenizeCCURLRequest.Execute(request, settings);
+            ServicesXmlResponse responseMessage = new ServicesXmlResponse();
+            responseMessage.XmlResponse = response;
+            return View(responseMessage);
+        }
+
+
+
+       
+        public ActionResult TokenizeCC()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult TokenizeCC(string creditCardNo, string ownerName, int expireYear, int expireMonth, string cvv, string customerId)
+        {
+            var request = new TokenizeCCRequest();
+            request.ServiceType = "CCTokenizationService";
+            request.OperationType = "TokenizeCC";
+            request.CustomerId = customerId;
+            request.CreditCardNumber = creditCardNo;
+            request.NameSurname = ownerName;
+            request.ExpiryDate = expireMonth + "/" + expireYear;
+            request.CVV = cvv;
+            request.Port = "";
+            request.IPAddress = "";
+            request.ValidityPeriod = "20";
+            #region Token
+            request.Token = new Token();
+            request.Token.UserCode = settings.UserCode;
+            request.Token.Pin = settings.Pin;
+            #endregion
+            var response = TokenizeCCRequest.Execute(request, settings);
+            ServicesXmlResponse responseMessage = new ServicesXmlResponse();
+            responseMessage.XmlResponse = response;
+            return View(responseMessage);
+        }
+
+
+        public ActionResult CardTokenizeSuccess()
+        {
+            var model= new CCTokenizeResponse();
+            model.StatusCode = Request.Form["Statuscode"];
+            model.ResultCode = Request.Form["ResultCode"];
+            model.ResultMessage = Request.Form["ResultMessage"];
+            model.TokenId = Request.Form["TokenId"];
+            model.MaskedCCNo = Request.Form["MaskedCCNo"];
+            model.CustomerId = Request.Form["CustomerId"];
+            return View(model);
+          
+        }
+        public ActionResult CardTokenizeFail()
+        {
+            var model = new CCTokenizeResponse();
+            model.StatusCode = Request.Form["Statuscode"];
+            model.ResultCode = Request.Form["ResultCode"];
+            model.ResultMessage = Request.Form["ResultMessage"];
+            model.TokenId = Request.Form["TokenId"];
+            model.MaskedCCNo = Request.Form["MaskedCCNo"];
+            model.CustomerId = Request.Form["CustomerId"];
+            return View(model);
+        }
 
         public ActionResult Success()
         {

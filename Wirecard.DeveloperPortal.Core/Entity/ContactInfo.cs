@@ -23,5 +23,9 @@ namespace Wirecard.DeveloperPortal.Core.Entity
         public string BusinessPhone { get; set; }
         [XmlElement("MobilePhone")]
         public string MobilePhone { get; set; }
+        [XmlElement("Email")]
+        public string Email { get; set; }
+        [XmlElement("InvoiceEmail")]
+        public string InvoiceEmail { get; set; }
     }
 }

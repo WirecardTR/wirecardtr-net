@@ -27,6 +27,8 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public SubPartnerTypeEnum SubPartnerType { get; set; }
         [XmlElement("Name")]
         public string Name { get; set; }
+        [XmlElement("BranchName")]
+        public string BranchName { get; set; }
         [XmlElement("ContactInfo")]
         public ContactInfo ContactInfo { get; set; }
         [XmlElement("FinancialInfo")]

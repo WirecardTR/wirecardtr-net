@@ -62,11 +62,16 @@
     </Compile>
     <Compile Include="Request\CCProxySale3DRequest.cs" />
     <Compile Include="Request\CCProxySaleRequest.cs" />
+    <Compile Include="Request\ChangePriceBySubscriberRequest.cs" />
     <Compile Include="Request\MarketPlaceAddOrUpdateRequest.cs" />
     <Compile Include="Request\MarketPlaceDeactiveRequest.cs" />
+    <Compile Include="Request\MarketPlaceMPSale3DSECRequest.cs" />
     <Compile Include="Request\MarketPlaceReleasePaymentRequest.cs" />
     <Compile Include="Request\MarketPlaceSale3DSecOrMpSaleRequest.cs" />
+    <Compile Include="Request\TokenizeCCRequest.cs" />
+    <Compile Include="Request\TokenizeCCURLRequest.cs" />
     <Compile Include="Request\WDTicketPaymentFormRequest.cs" />
+    <Compile Include="Response\CCTokenizeResponse.cs" />
     <Compile Include="Response\WDTicketPaymentFormBaseResponse.cs" />
     <Compile Include="Response\WDTicketPaymentFormResponse.cs" />
     <Compile Include="Response\ServicesXmlResponse.cs" />
