@@ -1005,6 +1005,15 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             model.MaskedCCNo = Request.Form["MaskedCCNo"];
             model.CCTokenId = Request.Form["CCTokenId"];
             model.ExtraParam = Request.Form["ExtraParam"];
+            var hashparam= Request.Form["HashParam"];
+            var hashText = Request.Form["Statuscode"] + Request.Form["LastTransactionDate"] + Request.Form["MPAY"] + Request.Form["OrderId"].ToLower() + base.settings.HashKey;
+            var hashedText = Helper.ComputeHash(hashText);
+            if (hashparam == hashedText)
+            {
+                //Gelen Hash değerinin doğru hesaplanmış olması işlem güvenliği açısından önemlidir !
+            }
+
+
             return View(model);
         }
         public ActionResult Fail()

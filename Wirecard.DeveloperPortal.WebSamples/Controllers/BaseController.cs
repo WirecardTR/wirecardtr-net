@@ -13,7 +13,8 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
         {
             UserCode = "",
             Pin = "",
-            BaseUrl = "https://www.wirecard.com.tr/SGate/Gate"
+            BaseUrl = "https://www.wirecard.com.tr/SGate/Gate",
+            HashKey = ""
         };
     }
 }

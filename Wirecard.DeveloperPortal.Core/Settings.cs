@@ -9,5 +9,6 @@
         public string UserCode { get; set; }
         public string Pin { get; set; }
         public string BaseUrl { get; set; }
+        public string HashKey { get; set; }
     }
 }
