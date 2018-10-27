@@ -22,8 +22,9 @@ namespace Wirecard.DeveloperPortal.Core
             var stringwriter = new System.IO.StringWriter();
             var serializer = new XmlSerializer(request.GetType());
             serializer.Serialize(stringwriter, request,ns);
-            var str = stringwriter.ToString().Replace("utf-16", "utf-8");
-            return new StringContent(str, Encoding.UTF8, "application/xml");
+            var str = stringwriter.ToString().Replace("utf-16", "ISO-8859-9");
+            Encoding encoding = Encoding.GetEncoding("ISO-8859-9");
+            return new StringContent(str, encoding, "application/xml");
         }
         public static T DeserializeObject<T>(string xmlString)
         {

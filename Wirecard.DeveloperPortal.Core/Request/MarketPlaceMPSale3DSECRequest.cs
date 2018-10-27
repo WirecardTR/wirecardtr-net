@@ -25,7 +25,8 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public int CommissionRate { get; set; }
         [XmlElement("MPAY")]
         public string MPAY { get; set; }
-      
+        [XmlElement("CurrencyCode")]
+        public string CurrencyCode { get; set; }
         [XmlElement("ErrorURL")]
         public string ErrorURL { get; set; }
         [XmlElement("SuccessURL")]

@@ -313,12 +313,13 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
         /// <param name="installmentCount"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult CCProxySale3D(string creditCardNo, string ownerName, int expireYear, int expireMonth, string cvv, int installmentCount)
+        public ActionResult CCProxySale3D(string creditCardNo, string ownerName, int expireYear, int expireMonth, string cvv, int installmentCount,string currencyCode)
         {
             var request = new CCProxySale3DRequest();
             request.ServiceType = "CCProxy";
             request.OperationType = "Sale3DSEC";
             request.MPAY = "001";
+            request.CurrencyCode = currencyCode;
             request.Port = "001";
             request.IPAddress = "127.0.0.1";
             request.PaymentContent = "Bilgisayar";
@@ -369,12 +370,13 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
         /// <param name="installmentCount"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult CCProxySale(string creditCardNo,string ownerName, int expireYear, int expireMonth,string cvv,int installmentCount)
+        public ActionResult CCProxySale(string creditCardNo,string ownerName, int expireYear, int expireMonth,string cvv,int installmentCount,string currencyCode)
         {
             var request= new CCProxySaleRequest();
             request.ServiceType = "CCProxy";
             request.OperationType = "Sale";
             request.MPAY = "001";
+            request.CurrencyCode = currencyCode;
             request.Port = "001";
             request.IPAddress = "127.0.0.1";
             request.PaymentContent = "Bilgisayar";
@@ -432,6 +434,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.OperationType = "Sale3DSURLProxy";
             request.Price = 1;//0,01 TL
             request.MPAY = "";
+            request.CurrencyCode = "TRY";
             request.ErrorURL = "http://localhost:7597/Home/Fail";
             request.SuccessURL = "http://localhost:7597/Home/Success";
             request.ExtraParam = "";
@@ -474,6 +477,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.OperationType = "SaleURLProxy";
             request.Price = 1;//0,01 TL
             request.MPAY = "";
+            request.CurrencyCode = "TRY";
             request.Description = "BLGSYR01";
             request.ErrorURL = "http://localhost:7597/Home/Fail";
             request.SuccessURL = "http://localhost:7597/Home/Success";
@@ -666,12 +670,13 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
         /// <param name="subPartnerId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult MarketPlaceSale3DSec(string creditCardNo, string ownerName, int expireYear, int expireMonth, string cvv, int installmentCount, int subPartnerId)
+        public ActionResult MarketPlaceSale3DSec(string creditCardNo, string ownerName, int expireYear, int expireMonth, string cvv, int installmentCount, int subPartnerId,string currencyCode)
         {
             MarketPlaceSale3DSecOrMpSaleRequest request = new MarketPlaceSale3DSecOrMpSaleRequest();
             request.ServiceType = "CCMarketPlace";
             request.OperationType = "Sale3DSEC";
             request.MPAY = "";
+            request.CurrencyCode = currencyCode;
             request.IPAddress = "195.168.1.4";
             request.Port = "123";
             request.Description = "Bilgisayar";
@@ -735,13 +740,14 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
         /// <param name="subPartnerId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult MarketPlaceMPSale(string creditCardNo, string ownerName, int expireYear, int expireMonth, string cvv, int installmentCount,int subPartnerId)
+        public ActionResult MarketPlaceMPSale(string creditCardNo, string ownerName, int expireYear, int expireMonth, string cvv, int installmentCount,int subPartnerId, string currencyCode)
         {
             MarketPlaceSale3DSecOrMpSaleRequest request = new MarketPlaceSale3DSecOrMpSaleRequest();
             request.ServiceType = "CCMarketPlace";
             request.OperationType = "MPSale";
             request.Price = 1; //0,01 TL
             request.MPAY = "01";
+            request.CurrencyCode = currencyCode;
             request.IPAddress = "127.0.0.1";
             request.Port = "123";
             request.Description = "Bilgisayar";
@@ -794,7 +800,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             
         }
         [HttpPost]
-        public ActionResult MarketPlaceWDTicketMpSale3dSecWithUrl(int subPartnerId)
+        public ActionResult MarketPlaceWDTicketMpSale3dSecWithUrl(int subPartnerId,string currencyCode)
         {
 
             MarketPlaceMPSale3DSECRequest request= new MarketPlaceMPSale3DSECRequest();
@@ -802,6 +808,7 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.OperationType = "MPSale3DSECWithUrl";
             request.Price = 1; //0,01 TL
             request.MPAY = "01";
+            request.CurrencyCode = currencyCode;
             request.Description = "Bilgisayar";
             request.CommissionRate = 1; //komisyon oranı 1. 100 ile çarpılıp gönderiliyor
             request.ExtraParam = "";

@@ -21,6 +21,8 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public CreditCardInfo CreditCardInfo { get; set; }
         [XmlElement("MPAY")]
         public string MPAY { get; set; }
+        [XmlElement("CurrencyCode")]
+        public string CurrencyCode { get; set; }
         [XmlElement("IPAddress")]
         public string IPAddress { get; set; }
         [XmlElement("PaymentContent")]

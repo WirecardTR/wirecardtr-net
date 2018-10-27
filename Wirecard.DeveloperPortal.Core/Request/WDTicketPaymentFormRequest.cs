@@ -24,6 +24,8 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public int Price { get; set; }
         [XmlElement("MPAY")]
         public string MPAY { get; set; }
+        [XmlElement("CurrencyCode")]
+        public string CurrencyCode { get; set; }
         [XmlElement("Description")]
         public string Description { get; set; }
         [XmlElement("ErrorURL")]
