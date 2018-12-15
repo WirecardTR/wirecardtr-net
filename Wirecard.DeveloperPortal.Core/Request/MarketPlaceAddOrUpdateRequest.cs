@@ -35,6 +35,8 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public FinancialInfo FinancialInfo { get; set; }
         [XmlElement("SubPartnerId")]
         public int SubPartnerId { get; set; }
+        [XmlElement("AuthSignatory")]
+        public AuthSignatoryInfo AuthSignatory { get; set; }
 
         public static string Execute(MarketPlaceAddOrUpdateRequest request, Settings options)
         {

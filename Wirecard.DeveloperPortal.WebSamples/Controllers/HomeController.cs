@@ -557,6 +557,15 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
 
 
             #endregion
+            #region AuthSignatory  Bilgileri
+            request.AuthSignatory = new AuthSignatoryInfo();
+            request.AuthSignatory.Name = "Ahmet";
+            request.AuthSignatory.Surname = "Yaşar";
+            request.AuthSignatory.BirthDate = DateTime.Now.ToString("yyyy/MM/dd");
+
+
+            #endregion
+
             var response = MarketPlaceAddOrUpdateRequest.Execute(request, settings);
 
             ServicesXmlResponse responseMessage= new ServicesXmlResponse();
@@ -613,9 +622,18 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.FinancialInfo.TaxNumber = "11111111111";
             request.FinancialInfo.BankName = "0012";
             request.FinancialInfo.IBAN = "TR330006100519786457841326";
-          
+
 
             #endregion
+            #region AuthSignatory  Bilgileri
+            request.AuthSignatory = new AuthSignatoryInfo();
+            request.AuthSignatory.Name = "Ahmet";
+            request.AuthSignatory.Surname = "Yaşar";
+            request.AuthSignatory.BirthDate = DateTime.Now.ToString("yyyy/MM/dd");
+
+
+            #endregion
+
             var response = MarketPlaceAddOrUpdateRequest.Execute(request, settings);
 
             ServicesXmlResponse responseMessage = new ServicesXmlResponse();
