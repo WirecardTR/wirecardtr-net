@@ -641,6 +641,149 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             return View(responseMessage);
         }
 
+        //Market Place
+        public ActionResult MarketPlaceAddSubPartnerWithOnlineVerification()
+        {
+            return View();
+        }
+
+
+        /// <summary>
+        /// Yeni bir Pazaryeri oluşturulması için kullanılan metoddur.
+        /// Pazaryeri oluşturulduktan sonra response değeri olarak SubPartnerId değeri bize gönderilir.
+        /// </summary>
+        /// <param name="subPartnerType"></param>
+        /// <param name="name"></param>
+        /// <param name="mobilePhoneNumber"></param>
+        /// <param name="identityNumber"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult MarketPlaceAddSubPartnerWithOnlineVerification(SubPartnerTypeEnum subPartnerType, string name, string mobilePhoneNumber, string identityNumber, string email)
+        {
+            MarketPlaceAddOrUpdateRequest request = new MarketPlaceAddOrUpdateRequest();
+            request.ServiceType = "CCMarketPlace";
+            request.OperationType = "AddSubPartner";
+            request.UniqueId = Guid.NewGuid().ToString().Replace("-", "");
+            request.SubPartnerType = subPartnerType;
+            request.Name = name;
+            request.BranchName = name;
+
+            #region Token Bilgileri
+            request.Token = new Token();
+            request.Token.UserCode = settings.UserCode;
+            request.Token.Pin = settings.Pin;
+
+            #endregion
+
+            #region ContactInfo Bilgileri
+            request.ContactInfo = new ContactInfo();
+            request.ContactInfo.Country = "TR";
+            request.ContactInfo.City = "34";
+            request.ContactInfo.Address = "Gayrettepe Mh. Yıldız Posta Cd. D Plaza No:52 K:6 34349 Beşiktaş / İstanbul";
+            request.ContactInfo.MobilePhone = mobilePhoneNumber;
+            request.ContactInfo.BusinessPhone = "2121111111";
+            request.ContactInfo.Email = email;
+            request.ContactInfo.InvoiceEmail = email;
+            #endregion
+            #region FinancialInfo Bilgileri
+            request.FinancialInfo = new FinancialInfo();
+            request.FinancialInfo.IdentityNumber = identityNumber;
+            request.FinancialInfo.TaxOffice = "İstanbul";
+            request.FinancialInfo.TaxNumber = "11111111111";
+            request.FinancialInfo.BankName = "0012";
+            request.FinancialInfo.IBAN = "TR330006100519786457841326";
+            request.FinancialInfo.TradeRegisterNumber = "963018";
+            request.FinancialInfo.TradeChamber = "İTO";
+
+            #endregion
+
+            #region AuthSignatory  Bilgileri
+            request.AuthSignatory = new AuthSignatoryInfo();
+            request.AuthSignatory.Name = "Ahmet";
+            request.AuthSignatory.Surname = "Yaşar";
+            request.AuthSignatory.BirthDate = DateTime.Now.ToString("yyyy/MM/dd");
+            #endregion
+
+            var response = MarketPlaceAddOrUpdateRequest.Execute(request, settings);
+
+            ServicesXmlResponse responseMessage = new ServicesXmlResponse();
+
+            responseMessage.XmlResponse = response;
+            return View(responseMessage);
+        }
+
+
+        public ActionResult MarketPlaceUpdateSubPartnerwithOnlineVerification()
+        {
+            return View();
+        }
+        /// <summary>
+        /// Pazaryerinin güncellenmesi için kullanılır.
+        /// Pazaryerinin güncellenmesi için pazaryeri oluşturulduğunda response değeri olarak verilen SubPartnerId değerinin gönderilmesi gerekmektedir.
+        /// </summary>
+        /// <param name="subPartnerType"></param>
+        /// <param name="name"></param>
+        /// <param name="mobilePhoneNumber"></param>
+        /// <param name="identityNumber"></param>
+        /// <param name="subPartnerId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult MarketPlaceUpdateSubPartnerwithOnlineVerification(SubPartnerTypeEnum subPartnerType, string name, string mobilePhoneNumber, string identityNumber, int subPartnerId, string email)
+        {
+            MarketPlaceAddOrUpdateRequest request = new MarketPlaceAddOrUpdateRequest();
+            request.ServiceType = "CCMarketPlace";
+            request.OperationType = "UpdateSubPartner";
+            request.UniqueId = Guid.NewGuid().ToString();
+            request.SubPartnerType = subPartnerType;
+            request.Name = name;
+            request.BranchName = name;
+            request.SubPartnerId = subPartnerId;
+            #region Token Bilgileri
+            request.Token = new Token();
+            request.Token.UserCode = settings.UserCode;
+            request.Token.Pin = settings.Pin;
+
+            #endregion
+
+            #region ContactInfo Bilgileri
+            request.ContactInfo = new ContactInfo();
+            request.ContactInfo.Country = "TR";
+            request.ContactInfo.City = "34";
+            request.ContactInfo.Address = "Gayrettepe Mh. Yıldız Posta Cd. D Plaza No:52 K:6 34349 Beşiktaş / İstanbul";
+            request.ContactInfo.MobilePhone = mobilePhoneNumber;
+            request.ContactInfo.BusinessPhone = "2121111111";
+            request.ContactInfo.Email = email;
+            #endregion
+            #region FinancialInfo Bilgileri
+            request.FinancialInfo = new FinancialInfo();
+            request.FinancialInfo.IdentityNumber = identityNumber;
+            request.FinancialInfo.TaxOffice = "İstanbul";
+            request.FinancialInfo.TaxNumber = "11111111111";
+            request.FinancialInfo.BankName = "0012";
+            request.FinancialInfo.IBAN = "TR330006100519786457841326";
+            request.FinancialInfo.TradeRegisterNumber = "963018";
+            request.FinancialInfo.TradeChamber = "İTO";
+
+
+            #endregion
+            #region AuthSignatory  Bilgileri
+            request.AuthSignatory = new AuthSignatoryInfo();
+            request.AuthSignatory.Name = "Ahmet";
+            request.AuthSignatory.Surname = "Yaşar";
+            request.AuthSignatory.BirthDate = DateTime.Now.ToString("yyyy/MM/dd");
+
+
+            #endregion
+
+            var response = MarketPlaceAddOrUpdateRequest.Execute(request, settings);
+
+            ServicesXmlResponse responseMessage = new ServicesXmlResponse();
+            responseMessage.XmlResponse = response;
+            return View(responseMessage);
+        }
+
+
+
         public ActionResult MarketPlaceDeactiveSubPartner()
         {
             return View();

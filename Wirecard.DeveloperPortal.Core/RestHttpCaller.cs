@@ -20,6 +20,9 @@ namespace Wirecard.DeveloperPortal.Core
         
         public string PostXMLString(String url, object request)
         {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             HttpClient httpClient = new HttpClient();
             var xml = XmlBuilder.SerializeToXMLString(request);
             HttpResponseMessage httpResponseMessage = httpClient.PostAsync(url, xml).Result;

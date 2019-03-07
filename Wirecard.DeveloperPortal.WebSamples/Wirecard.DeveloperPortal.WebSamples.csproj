@@ -161,6 +161,8 @@
     <Content Include="Views\Home\SelectSubscriberDetail.cshtml" />
     <Content Include="Views\Home\DeactivateSubscriber.cshtml" />
     <Content Include="Views\Home\SelectSubscriber.cshtml" />
+    <Content Include="Views\Home\MarketPlaceAddSubPartnerWithOnlineVerification.cshtml" />
+    <Content Include="Views\Home\MarketPlaceUpdateSubPartnerWithOnlineVerification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

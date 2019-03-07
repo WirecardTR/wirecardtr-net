@@ -22,6 +22,10 @@ namespace Wirecard.DeveloperPortal.Core.Entity
         public string BankName { get; set; }
         [XmlElement("IBAN")]
         public string IBAN { get; set; }
+        [XmlElement("TradeRegisterNumber")]
+        public string TradeRegisterNumber { get; set; }
+        [XmlElement("TradeChamber")]
+        public string TradeChamber { get; set; }
 
 
     }
