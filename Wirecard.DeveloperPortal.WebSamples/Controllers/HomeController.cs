@@ -503,12 +503,39 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
         }
 
 
+        public ActionResult BinQuery()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult BinQuery(string bin)
+        {
+            BinQueryRequest request = new BinQueryRequest();
+            request.ServiceType = "MerchantQueries";
+            request.OperationType = "BinQueryOperation";
+            request.BIN = bin;
+            
+
+            #region Token Bilgileri
+            request.Token = new Token();
+            request.Token.UserCode = settings.UserCode;
+            request.Token.Pin = settings.Pin;
+
+            #endregion
+            
+            var response = BinQueryRequest.Execute(request, settings);
+
+            ServicesXmlResponse responseMessage = new ServicesXmlResponse();
+
+            responseMessage.XmlResponse = response;
+            return View(responseMessage);
+        }
         //Market Place
         public ActionResult MarketPlaceAddSubPartner()
         {
             return View();
         }
-
+        
 
         /// <summary>
         /// Yeni bir Pazaryeri oluşturulması için kullanılan metoddur.
