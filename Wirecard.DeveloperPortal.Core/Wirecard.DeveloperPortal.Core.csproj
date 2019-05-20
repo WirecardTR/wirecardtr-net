@@ -65,6 +65,7 @@
     <Compile Include="Request\CCProxySale3DRequest.cs" />
     <Compile Include="Request\CCProxySaleRequest.cs" />
     <Compile Include="Request\ChangePriceBySubscriberRequest.cs" />
+    <Compile Include="Request\MarketPlaceCreateRequest.cs" />
     <Compile Include="Request\MarketPlaceAddOrUpdateRequest.cs" />
     <Compile Include="Request\MarketPlaceDeactiveRequest.cs" />
     <Compile Include="Request\MarketPlaceMPSale3DSECRequest.cs" />

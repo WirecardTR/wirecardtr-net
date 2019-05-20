@@ -12,4 +12,10 @@ namespace Wirecard.DeveloperPortal.Core.Entity
         PrivateCompany,
         Corporation
     }
+    public enum SubPartnerTypeWithIdEnum
+    {
+        Individual=1,
+        PrivateCompany=2,
+        Corporation=3
+    }
 }

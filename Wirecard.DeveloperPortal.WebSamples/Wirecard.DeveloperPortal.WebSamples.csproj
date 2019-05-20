@@ -164,6 +164,7 @@
     <Content Include="Views\Home\MarketPlaceAddSubPartnerWithOnlineVerification.cshtml" />
     <Content Include="Views\Home\MarketPlaceUpdateSubPartnerWithOnlineVerification.cshtml" />
     <Content Include="Views\Home\BinQuery.cshtml" />
+    <Content Include="Views\Home\MarketPlaceCreateSubPartner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
