@@ -29,6 +29,10 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public string Name { get; set; }
         [XmlElement("BranchName")]
         public string BranchName { get; set; }
+        [XmlElement("SuccessURL")]
+        public string SuccessURL { get; set; }
+        [XmlElement("ErrorURL")]
+        public string ErrorURL { get; set; }
         [XmlElement("ContactInfo")]
         public ContactInfo ContactInfo { get; set; }
         [XmlElement("FinancialInfo")]

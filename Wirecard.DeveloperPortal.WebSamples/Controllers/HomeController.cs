@@ -729,6 +729,8 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.SubPartnerType = subPartnerType;
             request.Name = name;
             request.BranchName = name;
+            request.SuccessURL = "https://www.test.com/Success";
+            request.ErrorURL = "https://www.test.com/Error";
 
             #region Token Bilgileri
             request.Token = new Token();
