@@ -50,6 +50,7 @@
     <Compile Include="Entity\AuthSignatoryInfo.cs" />
     <Compile Include="Entity\ContactInfo.cs" />
     <Compile Include="Entity\CreditCardInfo.cs" />
+    <Compile Include="Entity\CustomerInfo.cs" />
     <Compile Include="Entity\FinancialInfo.cs" />
     <Compile Include="Entity\MarketPlaceMpSale.cs" />
     <Compile Include="Entity\SubPartnerTypeEnum.cs" />

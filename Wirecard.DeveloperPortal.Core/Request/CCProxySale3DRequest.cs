@@ -39,7 +39,10 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public string Port { get; set; }
         [XmlElement("ExtraParam")]
         public string ExtraParam { get; set; }
-     
+        [XmlElement("CustomerInfo")]
+        public CustomerInfo CustomerInfo { get; set; }
+        [XmlElement("Language")]
+        public string Language { get; set; }
 
         [XmlElement("CardTokenization")]
         public CardTokenization CardTokenization { get; set; }

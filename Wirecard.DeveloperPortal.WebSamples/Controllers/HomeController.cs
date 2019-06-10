@@ -353,6 +353,17 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.CardTokenization.CCTokenId = string.Empty;
 
             #endregion
+            #region CustomerInfo
+
+            request.CustomerInfo = new CustomerInfo();
+            request.CustomerInfo.CustomerName = "ahmet";
+            request.CustomerInfo.CustomerSurname = "yılmaz";
+            request.CustomerInfo.CustomerEmail = "ahmet.yilmaz@gmail.com";
+
+            #endregion
+
+            request.Language = "TR";
+
             var response = CCProxySale3DRequest.Execute(request, settings);
             ServicesXmlResponse responseMessage = new ServicesXmlResponse();
             responseMessage.XmlResponse = response;
@@ -408,6 +419,16 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.CardTokenization.CCTokenId =string.Empty;
 
             #endregion
+            #region CustomerInfo
+
+            request.CustomerInfo = new CustomerInfo();
+            request.CustomerInfo.CustomerName = "ahmet";
+            request.CustomerInfo.CustomerSurname = "yılmaz";
+            request.CustomerInfo.CustomerEmail = "ahmet.yilmaz@gmail.com";
+
+            #endregion
+
+            request.Language = "TR";
             var response = CCProxySaleRequest.Execute(request, settings);
             ServicesXmlResponse responseMessage = new ServicesXmlResponse();
             responseMessage.XmlResponse = response;
@@ -444,6 +465,16 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.Token=new Token();
             request.Token.Pin = base.settings.Pin;
             request.Token.UserCode = base.settings.UserCode;
+            #region CustomerInfo
+
+            request.CustomerInfo = new CustomerInfo();
+            request.CustomerInfo.CustomerName = "ahmet";
+            request.CustomerInfo.CustomerSurname = "yılmaz";
+            request.CustomerInfo.CustomerEmail = "ahmet.yilmaz@gmail.com";
+
+            #endregion
+
+            request.Language = "TR";
             var response = WDTicketPaymentFormRequest.Execute(request, settings);
 
             var paymentFormResponse = new WDTicketPaymentFormResponse();
@@ -488,7 +519,16 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.Token.Pin = settings.Pin;
             request.Token.UserCode = settings.UserCode;
             #endregion
+            #region CustomerInfo
 
+            request.CustomerInfo = new CustomerInfo();
+            request.CustomerInfo.CustomerName = "ahmet";
+            request.CustomerInfo.CustomerSurname = "yılmaz";
+            request.CustomerInfo.CustomerEmail = "ahmet.yilmaz@gmail.com";
+
+            #endregion
+
+            request.Language = "TR";
             #region Response
             var response = WDTicketPaymentFormRequest.Execute(request, settings);
             var paymentFormResponse = new WDTicketPaymentFormResponse();
@@ -940,7 +980,16 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.CardTokenization.CCTokenId = string.Empty;
 
             #endregion
+            #region CustomerInfo
 
+            request.CustomerInfo = new CustomerInfo();
+            request.CustomerInfo.CustomerName = "ahmet";
+            request.CustomerInfo.CustomerSurname = "yılmaz";
+            request.CustomerInfo.CustomerEmail = "ahmet.yilmaz@gmail.com";
+
+            #endregion
+
+            request.Language = "TR";
             var response = MarketPlaceSale3DSecOrMpSaleRequest.Execute(request, settings);
             ServicesXmlResponse responseMessage = new ServicesXmlResponse();
             responseMessage.XmlResponse = response;
@@ -1010,7 +1059,16 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.CardTokenization.CCTokenId = String.Empty;
 
             #endregion
+            #region CustomerInfo
 
+            request.CustomerInfo = new CustomerInfo();
+            request.CustomerInfo.CustomerName = "ahmet";
+            request.CustomerInfo.CustomerSurname = "yılmaz";
+            request.CustomerInfo.CustomerEmail = "ahmet.yilmaz@gmail.com";
+
+            #endregion
+
+            request.Language = "TR";
             var response = MarketPlaceSale3DSecOrMpSaleRequest.Execute(request, settings);
             ServicesXmlResponse responseMessage = new ServicesXmlResponse();
             responseMessage.XmlResponse = response;

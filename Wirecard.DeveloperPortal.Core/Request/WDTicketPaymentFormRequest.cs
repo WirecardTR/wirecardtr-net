@@ -38,7 +38,10 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public string PaymentContent { get; set; }
         [XmlElement("PaymentTypeId")]
         public int PaymentTypeId { get; set; }
-
+        [XmlElement("CustomerInfo")]
+        public CustomerInfo CustomerInfo { get; set; }
+        [XmlElement("Language")]
+        public string Language { get; set; }
         public Token Token;
 
         public static string Execute(WDTicketPaymentFormRequest request, Settings options)
