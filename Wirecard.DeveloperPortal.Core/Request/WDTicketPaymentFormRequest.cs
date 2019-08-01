@@ -42,6 +42,8 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public CustomerInfo CustomerInfo { get; set; }
         [XmlElement("Language")]
         public string Language { get; set; }
+        [XmlElement("InstallmentOptions")]
+        public int InstallmentOptions { get; set; }
         public Token Token;
 
         public static string Execute(WDTicketPaymentFormRequest request, Settings options)
