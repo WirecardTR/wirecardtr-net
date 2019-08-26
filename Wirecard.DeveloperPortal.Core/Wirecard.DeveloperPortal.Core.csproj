@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\AuthSignatoryInfo.cs" />
+    <Compile Include="Entity\CommissionRateList.cs" />
     <Compile Include="Entity\ContactInfo.cs" />
     <Compile Include="Entity\CreditCardInfo.cs" />
     <Compile Include="Entity\CustomerInfo.cs" />

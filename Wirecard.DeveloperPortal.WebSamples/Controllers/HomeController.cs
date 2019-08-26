@@ -1096,6 +1096,15 @@ namespace Wirecard.DeveloperPortal.WebSamples.Controllers
             request.CurrencyCode = currencyCode;
             request.Description = "Bilgisayar";
             request.CommissionRate = 1; //komisyon oranı 1. 100 ile çarpılıp gönderiliyor
+            request.InstallmentOptions = 3;
+            #region CommissionRateList
+            request.CommissionRateList = new CommissionRateList();
+            request.CommissionRateList.Inst0 = 110;
+            request.CommissionRateList.Inst3 = 130;
+            request.CommissionRateList.Inst6 = 160;
+            request.CommissionRateList.Inst9 = 190;
+            #endregion
+            
             request.ExtraParam = "";
             request.PaymentContent = "BLGSYR01";
             request.SubPartnerId = subPartnerId;

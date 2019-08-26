@@ -27,6 +27,11 @@ namespace Wirecard.DeveloperPortal.Core.Request
         public string MPAY { get; set; }
         [XmlElement("CurrencyCode")]
         public string CurrencyCode { get; set; }
+        [XmlElement("InstallmentOptions")]
+        public int InstallmentOptions { get; set; }
+        [XmlElement("CommissionRateList")]
+        public CommissionRateList CommissionRateList { get; set; }
+
         [XmlElement("ErrorURL")]
         public string ErrorURL { get; set; }
         [XmlElement("SuccessURL")]

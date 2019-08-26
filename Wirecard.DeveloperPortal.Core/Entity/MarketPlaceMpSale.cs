@@ -22,5 +22,7 @@ namespace Wirecard.DeveloperPortal.Core.Entity
         public string Cvv { get; set; }
         [XmlElement("Price")]
         public int Price { get; set; }
+
     }
+    
 }
